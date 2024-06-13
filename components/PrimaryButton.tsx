@@ -14,6 +14,7 @@ export default function PrimaryButton({ children }: Props) {
 					paddingHorizontal: 20,
 					display: "flex",
 					alignItems: "center",
+					backgroundColor: "#FF8527",
 				}}
 			>
 				{children}
