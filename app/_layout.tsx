@@ -3,20 +3,22 @@ import {
 	DefaultTheme,
 	ThemeProvider,
 } from "@react-navigation/native";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Stack } from "expo-router";
 import React, { useEffect } from "react";
 import { useColorScheme } from "react-native";
 import "../global.css";
-import { signInWithPopup } from "firebase/auth";
-import { auth, provider } from "@/firebase/auth";
-import { GoogleSignin } from "@react-native-google-signin/google-signin";
 
 export const unstable_settings = {
 	initialRouteName: "(tabs)",
 };
 
 export default function RootLayout() {
-	return <Layout />;
+	return (
+		<QueryClientProvider client={new QueryClient()}>
+			<Layout />
+		</QueryClientProvider>
+	);
 }
 
 function Layout() {
@@ -26,7 +28,6 @@ function Layout() {
 		// signInWithPopup(auth, provider).then((result) => {
 		// 	console.log({ result });
 		// });
-
 		// GoogleSignin.configure({
 		// 	webClientId:
 		// 		"48232012757-cf8amoa29e4uuikq45236i31b3gq9376.apps.googleusercontent.com",
