@@ -3,7 +3,10 @@ import { Image, Text, View } from "react-native";
 import { ThemedText } from "./ThemedText";
 
 type Props = {
-	user: User;
+	user: {
+		displayname: string;
+		photoUrl: string;
+	};
 };
 
 export default function UserProfile({ user }: Props) {
@@ -23,6 +26,7 @@ export default function UserProfile({ user }: Props) {
 					height: 50,
 					backgroundColor: "#ddd",
 					borderRadius: 50,
+					overflow: "hidden",
 				}}
 			>
 				{user.photoUrl ? (
