@@ -53,7 +53,7 @@ function Layout() {
 					}}
 				/>
 				<Stack.Screen
-					name="modals/courseSearch"
+					name="modals/create-new-item"
 					options={{
 						headerShown: false,
 						presentation: "modal",
@@ -61,7 +61,7 @@ function Layout() {
 					}}
 				/>
 				<Stack.Screen
-					name="modals/chatSearch"
+					name="modals/new-recipe"
 					options={{
 						headerShown: false,
 						presentation: "modal",
