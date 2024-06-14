@@ -10,6 +10,7 @@ export default function IngredientSelector() {
 		<View>
 			<Text style={{ fontWeight: "500", marginBottom: 16 }}>Ingrediens</Text>
 			<FlatList
+				scrollEnabled={false}
 				style={{ marginBottom: 20 }}
 				data={ingredients}
 				contentContainerStyle={{

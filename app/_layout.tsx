@@ -83,6 +83,20 @@ function Layout() {
 					}}
 				/>
 				<Stack.Screen
+					name="modals/new-step"
+					options={{
+						title: "Add new step",
+						headerShown: true,
+						presentation: "modal",
+						animation: "fade_from_bottom",
+						headerShadowVisible: false,
+						headerStyle: { backgroundColor: "white" },
+						headerTintColor: "black",
+						headerTitleStyle: { fontSize: 16 },
+						headerTitleAlign: "center",
+					}}
+				/>
+				<Stack.Screen
 					name="modals/courseDetail"
 					options={{
 						title: "Detail course",

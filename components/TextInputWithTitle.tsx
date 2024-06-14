@@ -2,9 +2,9 @@ import { View, TextInput, Text, KeyboardTypeOptions } from "react-native";
 
 type Props = {
 	title: string;
-	value: string;
+	value: any;
 	type?: KeyboardTypeOptions;
-	onChangeText: (text: string) => any;
+	onChangeText: (text: any) => any;
 };
 
 export default function TextInputWithTitle({
