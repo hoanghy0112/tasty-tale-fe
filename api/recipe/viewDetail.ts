@@ -6,7 +6,7 @@ export default async function viewDetailRecipe({
 	queryKey: any;
 }) {
 	const [_key, id] = queryKey;
-	const response = await apiInstance.get(`/v1/recipe/${id}`, {});
+	const response = await apiInstance.get(`/v1/recipe/${id}`);
 
 	return response.data;
 }

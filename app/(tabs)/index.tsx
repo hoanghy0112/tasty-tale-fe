@@ -8,10 +8,11 @@ import { useQuery } from "@tanstack/react-query";
 import viewDetailRecipe from "@/api/recipe/viewDetail";
 
 export default function HomeScreen() {
-	const {} = useQuery({
+	const { data, isLoading, error } = useQuery({
 		queryKey: ["recipe", "4bd5d173-7e4e-4e35-9e02-0518114b8aff"],
 		queryFn: viewDetailRecipe,
 	});
+	console.log({ data, isLoading, error });
 
 	return (
 		<ParallaxScrollView
