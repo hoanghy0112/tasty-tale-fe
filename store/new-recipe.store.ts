@@ -12,6 +12,7 @@ export type INewRecipe = {
 	steps: Step[];
 	images: ImageEntity[];
 	update: (newRecipe: Partial<INewRecipe>) => any;
+	reset: () => any;
 };
 
 export const useNewRecipe = create<INewRecipe, [["zustand/immer", never]]>(
@@ -26,6 +27,16 @@ export const useNewRecipe = create<INewRecipe, [["zustand/immer", never]]>(
 			set((state) => ({
 				...state,
 				...newRecipe,
+			}));
+		},
+		reset() {
+			set((state) => ({
+				title: "",
+				description: "",
+				timeToCook: 0,
+				ingredients: [],
+				steps: [],
+				images: [],
 			}));
 		},
 	}))

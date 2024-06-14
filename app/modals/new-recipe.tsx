@@ -11,15 +11,27 @@ import { useNewRecipe } from "@/store/new-recipe.store";
 import { uploadToFirebaseStorage } from "@/utils/uploadToFirebaseStorage";
 import { useMutation } from "@tanstack/react-query";
 import { ImagePickerAsset } from "expo-image-picker";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Modal() {
-	const { title, description, timeToCook, ingredients, steps, update } =
+	const { title, description, timeToCook, ingredients, steps, update, reset } =
 		useNewRecipe();
 
 	const [images, setImages] = useState<ImagePickerAsset[]>([]);
 
-	const { mutate } = useMutation({ mutationFn: addNewRecipeApi });
+	const { mutate } = useMutation({
+		mutationFn: addNewRecipeApi,
+		onSuccess(data, variables, context) {
+			console.log({ data });
+		},
+		onError(error, variables, context) {
+			console.log({ error });
+		},
+	});
+
+	useEffect(() => {
+		reset();
+	}, []);
 
 	async function addRecipe() {
 		mutate({
@@ -33,8 +45,20 @@ export default function Modal() {
 					)
 				)
 			).map((url) => ({ url })),
-			ingredients: [],
-			steps: [],
+			ingredients,
+			steps: await Promise.all(
+				steps.map(async (step) => ({
+					...step,
+					images: (
+						await Promise.all(
+							step.images.map(
+								async (image) =>
+									await uploadToFirebaseStorage(image.url)
+							)
+						)
+					).map((url) => ({ url })),
+				}))
+			),
 		});
 	}
 

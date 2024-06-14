@@ -46,12 +46,6 @@ export default function Modal() {
 					<PrimaryButton
 						onPress={async () => {
 							router.back();
-							const urls = await Promise.all(
-								images.map(
-									async (asset) =>
-										await uploadToFirebaseStorage(asset.uri)
-								)
-							);
 							update({
 								steps: [
 									...steps,
@@ -59,7 +53,9 @@ export default function Modal() {
 										order: steps.length,
 										title,
 										content,
-										images: urls.map((url) => ({ url })),
+										images: images.map((image) => ({
+											url: image.uri,
+										})),
 									},
 								],
 							});

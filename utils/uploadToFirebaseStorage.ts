@@ -7,7 +7,7 @@ export async function uploadToFirebaseStorage(uri: string) {
 	const storageRef = ref(storage, fileName);
 
 	uploadBytes(storageRef, await getBlobFromUri(uri)).then((snapshot) => {
-		console.log({ snapshot });
+		// console.log({ snapshot });
 	});
 
 	return fileName;
