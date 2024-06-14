@@ -1,30 +1,11 @@
 import TextInputWithTitle from "@/components/TextInputWithTitle";
-import { FlatList, ScrollView, Text, View, Image } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import PrimaryButton from "@/components/PrimaryButton";
-import * as ImagePicker from "expo-image-picker";
-import { useState } from "react";
 import ImageSelector from "@/components/ImageSelector";
+import IngredientSelector from "@/components/IngredientSelector";
 
 export default function Modal() {
-	const [images, setImages] = useState<ImagePicker.ImagePickerAsset[]>([]);
-
-	const pickImage = async () => {
-		let result = await ImagePicker.launchImageLibraryAsync({
-			mediaTypes: ImagePicker.MediaTypeOptions.All,
-			allowsEditing: false,
-			aspect: [1, 1],
-			quality: 1,
-			allowsMultipleSelection: true,
-		});
-
-		if (!result.canceled) {
-			setImages(result.assets);
-		}
-	};
-	console.log({ images });
-
 	return (
 		<SafeAreaView
 			style={{
@@ -64,8 +45,8 @@ export default function Modal() {
 						type={"number-pad"}
 						onChangeText={() => {}}
 					/>
-					
-                    <ImageSelector title="Images" />
+					<ImageSelector title="Images" />
+					<IngredientSelector />
 				</View>
 			</ScrollView>
 		</SafeAreaView>
