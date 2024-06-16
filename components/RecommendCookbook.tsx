@@ -24,6 +24,8 @@ export default function RecommendCookbook({
 				autoPlay={false}
 				autoPlayInterval={2000}
 				data={data || []}
+				mode={"parallax"}
+				// modeConfig={{ snapDirection: "right" }}
 				scrollAnimationDuration={1000}
 				renderItem={({ item }) => <CookBookCard cookbook={item} />}
 			/>
