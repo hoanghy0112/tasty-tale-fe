@@ -13,6 +13,7 @@ import { router } from "expo-router";
 
 export default function Modal() {
 	const [name, setName] = useState<string>();
+	const [description, setDescription] = useState<string>("");
 	const [recipes, setRecipes] = useState<Recipe[]>([]);
 
 	const { mutate } = useMutation({
@@ -28,7 +29,14 @@ export default function Modal() {
 
 	async function addCookbook() {
 		if (!name) Alert.alert("Cookbook name must not be empty");
-		else mutate({ name, recipes: recipes.map((recipe) => recipe.id) });
+		else if (!recipes.length)
+			Alert.alert("Cookbook must have at least 1 recipe");
+		else
+			mutate({
+				name,
+				description,
+				recipes: recipes.map((recipe) => recipe.id),
+			});
 	}
 
 	return (
@@ -64,6 +72,11 @@ export default function Modal() {
 						title="Name"
 						value={name}
 						onChangeText={setName}
+					/>
+					<TextInputWithTitle
+						title="Description"
+						value={description}
+						onChangeText={setDescription}
 					/>
 					<SelectedRecipe
 						selected={recipes}
