@@ -18,6 +18,7 @@ export default function FeatureRecipe() {
 			</Text>
 			<View>
 				<FlatList
+					scrollEnabled={false}
 					data={data || []}
 					renderItem={({ item }) => <RecipeLargeCard recipe={item} />}
 					keyExtractor={(item) => item.id}
